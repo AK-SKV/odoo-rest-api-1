@@ -3,7 +3,6 @@
 var express = require('express');
 var router = express.Router();
 var errors = require('../utils/errors');
-var events = require('../events');
 
 router.get('/:path', function (req, res, next) {
     const odoo = req.odoo;

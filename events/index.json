@@ -1,0 +1,5 @@
+{
+    "res.partner": {
+        "before": "python before_res.partner.py"
+    }
+}
