@@ -1,6 +1,6 @@
 
 
-@token = e5ef9cbe-5834-49f0-a1b3-67bf72907c54
+@token = 0509920b-17ea-45d6-b7ba-dd6ac42b9bb2
 @q = [["name","like", "usu"]]
 
 ###
@@ -29,7 +29,7 @@ GET http://localhost:3000/api/res.partner?q={{q}}
 Authorization: {{token}}
 
 ###
-GET http://localhost:3000/api/res.partner/8
+GET http://localhost:3000/api/res.partner/10
 Authorization: {{token}}
 
 ###
@@ -38,18 +38,18 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "name": "usuario nuevo 3"
+    "name": "Carlos Navarrete"
 }
 
 ###
-PATCH http://localhost:3000/api/res.partner/9
+PATCH http://localhost:3000/api/res.partner/10
 Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "name": "usuario nuevo 3"
+    "name": "Alverto Navarrete"
 }
 
 ###
-DELETE http://localhost:3000/api/res.partner/9
+DELETE http://localhost:3000/api/res.partner/10
 Authorization: {{token}}
