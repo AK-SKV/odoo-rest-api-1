@@ -1,6 +1,6 @@
 
 
-@token = 0509920b-17ea-45d6-b7ba-dd6ac42b9bb2
+@token = 9d4ebc79-81c5-425b-88f8-668909d300c5
 @q = [["name","like", "usu"]]
 
 ###
@@ -29,12 +29,10 @@ GET http://localhost:3000/api/res.partner?q={{q}}
 Authorization: {{token}}
 
 ###
-GET http://localhost:3000/api/res.partner/10
-Authorization: {{token}}
+GET http://localhost:4000/api/res.partner/10?token={{token}}
 
 ###
-POST http://localhost:3000/api/res.partner
-Authorization: {{token}}
+POST http://localhost:3000/api/res.partner?token={{token}}
 Content-Type: application/json
 
 {

@@ -78,8 +78,7 @@ router.use(function (req, res, next) {
     var { authorization = '' } = req.headers;
     var { token = '' } = req.query;
     var conn = redis.createClient();
-    if (!authorization) return errors(res, new Error('Fallo'));
-
+    if (!authorization && !token) return errors(res, new Error('Fallo'));
     conn.get(authorization || token, function (err, _session) {
         if (!_session) return errors(res, new Error('Fallo'));
         var session = JSON.parse(_session);
