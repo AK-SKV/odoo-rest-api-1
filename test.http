@@ -1,15 +1,33 @@
 
 
-@token = 9d4ebc79-81c5-425b-88f8-668909d300c5
+@host = http://localhost:4000
+@token = 1c84e884-4c3c-44a0-a393-74b4c32c5707
 @q = [["name","like", "usu"]]
 
+
 ###
-POST http://localhost:3000/login
+POST {{host}}/login HTTP/1.1
+Host: localhost:4000
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0
+Accept: */*
+Accept-Language: en-GB,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/login
+content-type: text/plain;charset=UTF-8
+origin: http://localhost:3000
+Content-Length: 39
+Connection: keep-alive
+
+
+###
+OPTIONS {{host}}/login
+###
+POST {{host}}/login
 Content-Type: application/json
 
 {
-    "username": "admin",
-    "password": "123456"
+    "username": "user_api",
+    "password": "eclosion2018*"
 }
 
 ###
@@ -51,3 +69,19 @@ Content-Type: application/json
 ###
 DELETE http://localhost:3000/api/res.partner/10
 Authorization: {{token}}
+
+
+###
+POST {{host}}/api/crm.lead?token={{token}}
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "name": "julio torres"
+}
+
+###
+GET {{host}}/api/crm.lead
+Authorization: {{token}}
+
+

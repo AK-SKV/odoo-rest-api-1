@@ -15,14 +15,16 @@ router.post('/login', function (req, res) {
         password: req.body.password || ''
     };
     var odoo = new Odoo(params);
-    odoo.connect(function (err, { db, uid, user_context, company_id }) {
+
+    odoo.connect(function (err, params) {
         if (err) return errors(res, err);
+        var { db, uid, user_context, company_id } = params;
         if (!uid) return errors(res, new Error('Fallo'));
         var conn = redis.createClient();
         var session_id = uuid();
         conn.set(session_id, JSON.stringify({
-            username: params.username,
-            password: params.password,
+            username: req.body.username,
+            password: req.body.password,
         }), 'EX', 3600);
         conn.quit();
         res.statusCode = 201;

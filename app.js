@@ -1,16 +1,28 @@
 var express = require('express');
 var createError = require('http-errors');
 var logger = require('morgan');
+var cors = require('cors');
+var path = require('path');
 
 var middlewares = require('./middlewares');
 var api_router = require('./api');
+var serve_index = require('serve-index')
 
 var app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
+const files_path = path.join(__dirname, 'webroot');
+
+console.log(files_path)
+
+app.use('/files',
+    express.static(files_path),
+    serve_index(files_path, {'icons': true})
+);
 app.use(middlewares);
 app.use('/api', api_router);
 
@@ -28,6 +40,7 @@ app.use(function (err, req, res, next) {
     // render the error page
     res.status(err.status || 500);
     res.end(err.message);
+    console.log(err);
 });
 
 module.exports = app;
